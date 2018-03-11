@@ -1,7 +1,7 @@
-import * as React from "react";
+import * as React from 'react';
 
-export interface HelloProps {
+export interface IHelloProps {
   name: string;
-};
+}
 
-export default (props: HelloProps) => <h1>Hello {props.name}! :)</h1>;
+export default (props: IHelloProps) => <h1>Hello {props.name}! :)</h1>;
