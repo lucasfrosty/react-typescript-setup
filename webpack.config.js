@@ -1,4 +1,5 @@
-const {CheckerPlugin} = require('awesome-typescript-loader');
+const { CheckerPlugin } = require('awesome-typescript-loader');
+const path = require('path');
 
 module.exports = {
   mode: "development",
@@ -15,7 +16,21 @@ module.exports = {
   module: {
     rules: [
       // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
-      { test: /\.tsx?$/, loader: "awesome-typescript-loader" }
+      { test: /\.tsx?$/, exclude: /node_modules/, loader: "ts-loader" },
+      {
+        test: /\.s?css$/,
+        include: path.join(__dirname, 'src/components'),
+        use: [
+          { loader: 'style-loader' },
+          {
+            loader: 'typings-for-css-modules-loader',
+            options: {
+              modules: true,
+              namedExport: true
+            }
+          },
+        ]
+      }
     ]
   },
   plugins: [
